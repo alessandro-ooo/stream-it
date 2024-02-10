@@ -9,6 +9,7 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@aws-sdk/client-s3": "^3.511.0",
     "@prisma/client": "^5.9.1",
     "next": "14.1.0",
     "next-auth": "^4.24.5",
