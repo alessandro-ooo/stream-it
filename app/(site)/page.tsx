@@ -1,4 +1,5 @@
 "use client"
+import DnD from "../Components/Drag n drop/dnd";
 import Navbar from "../Components/Navbar/Navbar"
 import { signIn, signOut, useSession } from "next-auth/react";
 
@@ -6,10 +7,10 @@ const Index = () => {
     const {data: session } = useSession();
 
     return (
-        <div>
+        <DnD>
             <Navbar>
                     {session == null &&
-                        <button onClick={() => signIn('google', {callbackUrl: '/dashboard'})}>log in with google </button>
+                        <button onClick={() => signIn('google', {callbackUrl: '/'})}>log in with google </button>
                     }
 
                     {session != null &&
@@ -21,7 +22,7 @@ const Index = () => {
             <div>
                 <h1>this would be the landing page</h1>
             </div>
-        </div>
+        </DnD>
     )
 } 
 
