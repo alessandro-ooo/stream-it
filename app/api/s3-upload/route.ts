@@ -25,7 +25,7 @@ const putInBucket = async (file: any, fileName: any) => {
 
     const command = new PutObjectCommand(params);
     await bucket.send(command);
-    return 
+    return putInORM.id;
 }
 
 export async function POST (request: NextRequest) {
@@ -40,7 +40,11 @@ export async function POST (request: NextRequest) {
         console.log(media);
         const buffer: Buffer = Buffer.from(await media.arrayBuffer());
         const mediaName = await putInBucket(buffer, media.name);
-        return NextResponse.json({ success: true, mediaName});
+        console.log(mediaName);
+        return NextResponse.json({
+            success: true,
+            id: mediaName,
+          });
     } catch (error) {
         return NextResponse.json({error: error});
     }
