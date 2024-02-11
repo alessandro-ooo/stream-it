@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 import {S3Client, PutObjectCommand} from "@aws-sdk/client-s3";
 import { insertMedia } from "@/app/libs/prisma-media";
+import { cookies } from "next/headers";
 
 const bucket = new S3Client({
     region: process.env.AWS_S3_REGION ?? "",
@@ -14,7 +15,7 @@ const putInBucket = async (file: any, fileName: any) => {
     const fileBuffer = file;
     console.log(fileName);
 
-    const putInORM = await insertMedia(fileName, "buonocorealessandro98@gmail.com");
+    const putInORM = await insertMedia(fileName, cookies().get("email")!.value);
     const params = {
         Bucket: process.env.AWS_S3_BUCKET,
         Key: `${putInORM.id}`,
