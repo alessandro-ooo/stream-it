@@ -1,8 +1,7 @@
 import { createUser, getUser } from "@/app/libs/prisma-user";
 import NextAuth, { NextAuthOptions } from "next-auth";
 import GoogleProvider from "next-auth/providers/google";
-
-import { redirect } from 'next/navigation'
+import { cookies } from "next/headers";
 
 export const authOptions: NextAuthOptions  = {
     providers: [
@@ -19,6 +18,8 @@ export const authOptions: NextAuthOptions  = {
             if(exists == null) {
                 await createUser(user.email as string);
             }
+
+            cookies().set('email', user.email as string, { secure: true });
             return true;
         },
     },
