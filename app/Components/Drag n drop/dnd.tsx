@@ -1,8 +1,10 @@
 "use client";
 import { DragEvent, useState } from "react";
+import { TDnD } from "./types";
+import { useRouter } from 'next/navigation'
 
-const DnD = () => {
-
+const DnD = (props: TDnD) => {
+    const router = useRouter();
     const [isOver, setIsOver] = useState(false);
 
     // Define the event handlers
@@ -23,10 +25,16 @@ const DnD = () => {
 
         formData.append("media", files[0]);
 
-        await fetch('/api/s3-upload', {
+        const send = await fetch('/api/s3-upload', {
             method: "POST",
             body: formData
         });
+
+        const response = await send.json();
+
+        if(response.success) {
+            router.push(`/${response.id}`)
+        }
     }
 
     return (
@@ -34,16 +42,9 @@ const DnD = () => {
             onDragOver={handleDragOver}
             onDragLeave={handleDragLeave}
             onDrop={handleDrop}
-            style={{
-                display: "flex",
-                justifyContent: "center",
-                alignItems: "center",
-                height: "50px",
-                width: "300px",
-                border: "1px dotted",
-                backgroundColor: isOver ? "lightgray" : "white",
-            }}
-        />
+        >
+            {props.children}
+        </div>
 
     )
 }
