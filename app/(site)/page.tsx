@@ -1,29 +1,45 @@
 "use client"
+import { useEffect } from "react";
 import DnD from "../Components/Drag n drop/dnd";
 import Navbar from "../Components/Navbar/Navbar"
-import { signIn, signOut, useSession } from "next-auth/react";
+import { useSession } from "next-auth/react";
+import { getAllUserMedia } from "../libs/prisma-media";
+import Collection from "../Components/Media/Collection";
+import Media from "../Components/Media/Media";
 
 const Index = () => {
-    const {data: session } = useSession();
+    // fix this mess
+    const { data: session } = useSession();
+    
+        useEffect(() => {
+            console.log("hook")
+            // if(session != null){
+                const actionGetAllUserMedia = async (email: string) => {
+                const media = await getAllUserMedia(email);
+                return (
+                    <div>
+                        <Navbar session={session}/>
+                        <Collection reactClass="e">
+                            {media.map((vid, i: number) => {
+                                return (
+                                    <Media 
+                                        URL={vid.id}
+                                        name={vid.name}
+                                    />
+                                )
+                            })}
+                        </Collection>
+                    </div>
+                )
+                }
+                actionGetAllUserMedia(session!.user?.email as string);
+            // }
+        },[])
+    
 
-    return (
-        <DnD>
-            <Navbar>
-                    {session == null &&
-                        <button onClick={() => signIn('google', {callbackUrl: '/'})}>log in with google </button>
-                    }
+    if(session == null) {
+        return <Navbar session={session}/>
+    }
+}
 
-                    {session != null &&
-                        <button onClick={() => signOut()}>log out</button>
-                    }
-                <p>{JSON.stringify(session)}</p>
-            </Navbar>
-
-            <div>
-                <h1>this would be the landing page</h1>
-            </div>
-        </DnD>
-    )
-} 
-
-export default Index;
+export default Index
