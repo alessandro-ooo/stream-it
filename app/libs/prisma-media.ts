@@ -21,9 +21,9 @@ const getMedia = async (id: string) => {
     return res;
 }
 
-const getAllUserMedias = async (email: string) => {
+const getAllUserMedia = async (email: string) => {
     const res = await prisma.media.findMany({where: {user: email} })
     return res;
 }
 
-export { getMedia, getAllUserMedias, insertMedia};
+export { getMedia, getAllUserMedia, insertMedia};
