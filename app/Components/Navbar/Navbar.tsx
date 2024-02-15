@@ -1,9 +1,11 @@
 
+"use client"
 import { signIn, signOut } from "next-auth/react";
 import { TNavbar } from "./types";
+import { useSession } from "next-auth/react";
 
 const Navbar = (props: TNavbar) => {
-    const { session } = props;
+    const { data: session } = useSession();
     return (
         <div>
             {session == null &&
