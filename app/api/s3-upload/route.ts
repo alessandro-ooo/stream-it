@@ -20,7 +20,7 @@ const putInBucket = async (file: any, fileName: any) => {
         Bucket: process.env.AWS_S3_BUCKET,
         Key: `${putInORM.id}`,
         Body: fileBuffer,
-        ContentType: "image/jpg"
+        ContentType: "video/mp4"
     }
 
     const command = new PutObjectCommand(params);
@@ -46,6 +46,7 @@ export async function POST (request: NextRequest) {
             id: mediaName,
           });
     } catch (error) {
+        console.log(error);
         return NextResponse.json({error: error});
     }
 }
