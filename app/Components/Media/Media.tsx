@@ -1,13 +1,12 @@
-import Link from "next/link";
+"use client"
 import { TMedia } from "./types";
-import { useForm } from "react-hook-form";
+import {useForm } from "react-hook-form";
 import MediaName from "../Inputs/MediaName";
 
 const Media = (props: TMedia) => {
     const { URL, name } = props;
     const {
         register,
-        handleSubmit,
         watch,
         formState: { errors } 
     } = useForm({
@@ -24,14 +23,23 @@ const Media = (props: TMedia) => {
                 <source type="video/mp4" src={`https://stream-it.s3.eu-west-2.amazonaws.com/${URL}#t=2`} />
             </video>
 
-            <Link href={`${process.env.DOMAIN}${URL}`}>
+            {/* <a href={`${process.env.DOMAIN}${URL}`}>
                 {process.env.DOMAIN}{URL}
-            </Link>
+            </a> */}
 
             <form 
-                onSubmit={handleSubmit(async (data) => {
-                    // Update it btw...    
-                })}
+                onKeyDown={async e =>  {
+                    
+                    if(e.key == "Enter") {
+                        e.preventDefault();
+                        const newName = watch('name');
+
+                        await fetch('/api/updateMediaName', {
+                            method: 'POST',
+                            body: JSON.stringify({URL, newName})
+                        });
+                    }
+                }}
             >
                 <MediaName 
                     value={name} 
