@@ -16,6 +16,13 @@ const insertMedia = async (name: string, uploader: string) => {
     return {res, id};
 }
 
+const updateMediaName = async (id: string, name: string) => {
+    await prisma.media.update({
+        where: {id: id},
+        data: {name: name}
+    });
+}
+
 const getMedia = async (id: string) => {
     const res = await prisma.media.findUnique({where: {id: id}});
     return res;
@@ -26,4 +33,4 @@ const getAllUserMedia = async (email: string) => {
     return res;
 }
 
-export { getMedia, getAllUserMedia, insertMedia};
+export { getMedia, getAllUserMedia, insertMedia, updateMediaName};
