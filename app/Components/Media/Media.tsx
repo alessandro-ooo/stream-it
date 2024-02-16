@@ -2,6 +2,7 @@
 import { TMedia } from "./types";
 import {useForm } from "react-hook-form";
 import MediaName from "../Inputs/MediaName";
+import Link from "next/link";
 
 const Media = (props: TMedia) => {
     const { URL, name } = props;
@@ -23,9 +24,9 @@ const Media = (props: TMedia) => {
                 <source type="video/mp4" src={`https://stream-it.s3.eu-west-2.amazonaws.com/${URL}#t=2`} />
             </video>
 
-            {/* <a href={`${process.env.DOMAIN}${URL}`}>
+            <Link href={`/${URL}`}>
                 {process.env.DOMAIN}{URL}
-            </a> */}
+            </Link>
 
             <form 
                 onKeyDown={async e =>  {
