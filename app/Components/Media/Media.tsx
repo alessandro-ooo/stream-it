@@ -25,7 +25,7 @@ const Media = (props: TMedia) => {
             </video>
 
             <Link href={`/${URL}`}>
-                {process.env.DOMAIN}{URL}
+            {process.env.NEXT_PUBLIC_DOMAIN}{URL}
             </Link>
 
             <form 
