@@ -37,39 +37,6 @@ const Index = async () => {
             </DnD>
         );
     }
-
-    // fix this mess
-
-    //     useEffect(() => {
-
-    //         console.log("hook")
-    //         // if(session != null){
-    //             const actionGetAllUserMedia = async (email: string) => {
-    //             const media = await getAllUserMedia(email);
-    //             return (
-    //                 <div>
-    //                     <Navbar />
-    //                     <Collection reactClass="e">
-    //                         {media.map((vid, i: number) => {
-    //                             return (
-    //                                 <Media 
-    //                                     URL={vid.id}
-    //                                     name={vid.name}
-    //                                 />
-    //                             )
-    //                         })}
-    //                     </Collection>
-    //                 </div>
-    //             )
-    //             }
-    //             actionGetAllUserMedia(session!.user?.email as string);
-    //         // }
-    //     },[])
-
-
-    // if(session == null) {
-    //     return <Navbar session={session}/>
-    // }
 }
 
 export default Index
