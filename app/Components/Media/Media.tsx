@@ -3,6 +3,7 @@ import { TMedia } from "./types";
 import {useForm } from "react-hook-form";
 import MediaName from "../Inputs/MediaName";
 import Link from "next/link";
+import Settings from "./Settings";
 
 const Media = (props: TMedia) => {
     const { URL, name } = props;
@@ -47,6 +48,11 @@ const Media = (props: TMedia) => {
                     {...register("name", { required: false, minLength: 2, maxLength: 20})} 
                 />
             </form>
+
+            <div>
+                <button>copy link</button>
+                <Settings URL={URL} />
+            </div>
         </div>
     )
 }

@@ -13,3 +13,7 @@ export type TMedia = {
     name: string;
     preview?: unknown;
 }
+
+export type TSettings = {
+    URL: string;
+}
