@@ -16,6 +16,14 @@ const insertMedia = async (name: string, uploader: string) => {
     return {res, id};
 }
 
+const deleteMedia = async (url: string) => {
+    const res = await prisma.media.delete({
+        where: {id: url}
+    });
+
+    return res;
+}
+
 const updateMediaName = async (id: string, name: string) => {
     await prisma.media.update({
         where: {id: id},
@@ -33,4 +41,4 @@ const getAllUserMedia = async (email: string) => {
     return res;
 }
 
-export { getMedia, getAllUserMedia, insertMedia, updateMediaName};
+export { getMedia, getAllUserMedia, insertMedia, updateMediaName, deleteMedia};
