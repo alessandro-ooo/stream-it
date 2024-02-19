@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
-import {S3Client, PutObjectCommand} from "@aws-sdk/client-s3";
+import {S3Client, PutObjectCommand, DeleteObjectCommand} from "@aws-sdk/client-s3";
 import { insertMedia } from "@/app/libs/prisma-media";
 import { cookies } from "next/headers";
 
@@ -28,6 +28,7 @@ const putInBucket = async (file: any, fileName: any) => {
     return putInORM.id;
 }
 
+
 export async function POST (request: NextRequest) {
     try {
         const formData = await request.formData();
@@ -49,4 +50,17 @@ export async function POST (request: NextRequest) {
         console.log(error);
         return NextResponse.json({error: error});
     }
+}
+
+export async function DELETE (request: NextRequest) {
+    const data: { url: string} = await request.json();
+    const params = {
+        Bucket: process.env.AWS_S3_BUCKET,
+        Key: `${data.url}`,
+        ContentType: "video/mp4"
+    }
+
+    const command = new DeleteObjectCommand(params);
+    await bucket.send(command); 
+    return NextResponse.json({status: 200});
 }
