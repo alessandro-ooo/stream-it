@@ -6,14 +6,19 @@ import Media from "../Components/Media/Media";
 import { getServerSession } from "next-auth/next"
 import { authOptions } from "../api/auth/[...nextauth]/route";
 
-const Index = async () => {
-
-    const session = await getServerSession(authOptions)
+type SearchParamProps = {
+    searchParams: Record<string, string> | null | undefined;
+  };
+  
+const Index = async ({ searchParams }: SearchParamProps) => {
+    const session = await getServerSession(authOptions);
+    const visibilityModal = searchParams?.visibility;
 
     if (session != null) {
         const media = await getAllUserMedia(session.user?.email as string);
         return (
             <DnD>
+                {visibilityModal && <p> da creare usando react hook form </p>}
                 <Navbar />
                 <Collection reactClass="e">
                     {media.map((vid, i: number) => {
