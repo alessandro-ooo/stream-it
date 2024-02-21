@@ -1,5 +1,9 @@
-// This is your Prisma schema file,
-// learn more about it in the docs: https://pris.ly/d/prisma-schema
+    // Notes:
+    // - field "id" stands for "url" as well, because it helps creating unique links such as: https:www.domain.it/3ujh34K
+    // - field "privacy" has three status:
+    //      0: public
+    //      1: only the owner can watch it
+    //      2: passworded (see Passwords model)
 
 generator client {
     provider = "prisma-client-js"
@@ -20,5 +24,12 @@ model Media {
     uploader User @relation(fields: [user], references: [email])
     user String
     name String
-    // oURL String @unique
+    privacy Int @default(0)
+    password Passwords[]
+}
+
+model Passwords {
+    media Media @relation(fields: [url], references: [id])
+    url String
+    password String @id
 }
