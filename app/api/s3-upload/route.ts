@@ -62,5 +62,5 @@ export async function DELETE (request: NextRequest) {
 
     const command = new DeleteObjectCommand(params);
     await bucket.send(command); 
-    return NextResponse.json({status: 200});
+    return NextResponse.redirect('/');
 }
