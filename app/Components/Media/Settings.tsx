@@ -1,24 +1,26 @@
+import Link from "next/link";
 import { TSettings } from "./types"
 
 const Settings = (props: TSettings) => {
     const { URL } = props;
     
     const api_deleteMedia = async (url: string) => {
+
         const res = await fetch('/api/deleteMedia', {
             method: "DELETE",
             body: JSON.stringify({ url })
         });
 
-        // add checks
-
         const result = await res.json();
-        console.log(result);
+
+        if(result.status == 403) {
+            return Error(result.status);
+        }
 
         await fetch('/api/s3-upload', {
             method: "DELETE",
             body: JSON.stringify({ url })
         });
-
     }
 
     return (
@@ -29,8 +31,10 @@ const Settings = (props: TSettings) => {
             >
                 Delete
             </li>
-            <li>
-                Visibility
+            <li >
+                <Link href="/?visibility=true">
+                    Visibility
+                </Link>
             </li>
         </ul>
     )
