@@ -3,6 +3,7 @@ import { TSettings } from "./types"
 
 const Settings = (props: TSettings) => {
     const { URL } = props;
+    const customRef: string = `/?visibility=true?&URL=${URL}`;
     
     const api_deleteMedia = async (url: string) => {
 
@@ -32,7 +33,8 @@ const Settings = (props: TSettings) => {
                 Delete
             </li>
             <li >
-                <Link href="/?visibility=true">
+                <Link 
+                    href={customRef}>
                     Visibility
                 </Link>
             </li>
