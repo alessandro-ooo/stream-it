@@ -5,6 +5,8 @@ import Collection from "../Components/Media/Collection";
 import Media from "../Components/Media/Media";
 import { getServerSession } from "next-auth/next"
 import { authOptions } from "../api/auth/[...nextauth]/route";
+import VisibilityForm from "../Components/Forms/VisibilityForm";
+import Modal from "../Components/Modal/Modal";
 
 type SearchParamProps = {
     searchParams: Record<string, string> | null | undefined;
@@ -13,12 +15,20 @@ type SearchParamProps = {
 const Index = async ({ searchParams }: SearchParamProps) => {
     const session = await getServerSession(authOptions);
     const visibilityModal = searchParams?.visibility;
+    const URL = searchParams?.URL;
 
     if (session != null) {
         const media = await getAllUserMedia(session.user?.email as string);
         return (
             <DnD>
-                {visibilityModal && <p> da creare usando react hook form </p>}
+                {
+                    visibilityModal && 
+                        <Modal>
+                            <VisibilityForm 
+                                URL={URL as string} 
+                            />
+                        </Modal>
+                }
                 <Navbar />
                 <Collection reactClass="e">
                     {media.map((vid, i: number) => {
