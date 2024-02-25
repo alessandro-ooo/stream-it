@@ -1,4 +1,5 @@
 import prisma from "./prisma-db";
+import bcrypt from 'bcryptjs';
 
 const insertMedia = async (name: string, uploader: string) => {
     const id = (Math.random() + 1).toString(36).substring(2);
@@ -41,4 +42,41 @@ const getAllUserMedia = async (email: string) => {
     return res;
 }
 
-export { getMedia, getAllUserMedia, insertMedia, updateMediaName, deleteMedia};
+const hasPassword = async (URL: string) => {
+    const res = await prisma.passwords.findMany({
+        where: {
+            url: URL
+        },
+        select: {
+            password: true
+        }
+    });
+    return res;
+}
+
+const setMediaPassword = async (URL: string, password: string) => {
+    console.log(URL, password);
+    const hash = await bcrypt.hashSync(password);
+    const hasPass = await hasPassword(URL);
+    
+    if(hasPass.length == 0) {
+        await prisma.passwords.create({
+            data: {
+                password: hash,
+                url: URL,
+            }
+        });
+
+    }
+
+    await prisma.passwords.update({
+        where: {
+            password: hasPass[0].password
+        },
+        data: {
+            password: hash
+        }
+    });
+}
+
+export { getMedia, getAllUserMedia, insertMedia, updateMediaName, deleteMedia, hasPassword, setMediaPassword};

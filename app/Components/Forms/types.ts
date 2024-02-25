@@ -3,4 +3,5 @@ export type TVisibilityForm = {
 }
 export type TVisibilityFields = {
     password: string;
+    URL: string;
 }

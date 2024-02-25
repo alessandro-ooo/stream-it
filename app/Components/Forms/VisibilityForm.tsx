@@ -14,14 +14,23 @@ const VisibilityForm = (props: TVisibilityForm) => {
         formState: { errors }
     } = useForm<TVisibilityFields>({
         defaultValues: {
-            password: ''
+            password: '',
+            URL: URL
         }
     });
 
     return (
         <form
             onSubmit={handleSubmit(async (data) => {
-                console.log(data, URL);
+                data.URL = URL;
+                console.log(data);
+                const res = await fetch('/api/setMediaPassword', {
+                    method: "POST",
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(data)
+                });
             })}
         >
             <Input 
