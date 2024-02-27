@@ -26,6 +26,7 @@ const Index = async ({ searchParams }: SearchParamProps) => {
                         <Modal>
                             <VisibilityForm 
                                 URL={URL as string} 
+                                OwnerCheck={false}
                             />
                         </Modal>
                 }
