@@ -54,8 +54,18 @@ const hasPassword = async (URL: string) => {
     return res;
 }
 
+const setMediaVisibility = async (URL: string, ownerOnly: boolean) => {
+    await prisma.media.update({
+        where: {
+            id: URL
+        },
+        data: {
+            privacy: ownerOnly
+        }
+    });
+}
+
 const setMediaPassword = async (URL: string, password: string) => {
-    console.log(URL, password);
     const hash = await bcrypt.hashSync(password);
     const hasPass = await hasPassword(URL);
     
@@ -79,4 +89,4 @@ const setMediaPassword = async (URL: string, password: string) => {
     });
 }
 
-export { getMedia, getAllUserMedia, insertMedia, updateMediaName, deleteMedia, hasPassword, setMediaPassword};
+export { getMedia, getAllUserMedia, insertMedia, updateMediaName, deleteMedia, hasPassword, setMediaPassword, setMediaVisibility};
