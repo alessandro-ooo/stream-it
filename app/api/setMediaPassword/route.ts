@@ -1,5 +1,5 @@
 import { TVisibilityFields } from "@/app/Components/Forms/types";
-import { setMediaPassword } from "@/app/libs/prisma-media";
+import { setMediaPassword, setMediaVisibility } from "@/app/libs/prisma-media";
 import { NextRequest, NextResponse } from "next/server";
 
 export async function POST (request: NextRequest) {

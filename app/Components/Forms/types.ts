@@ -7,3 +7,8 @@ export type TVisibilityFields = {
     URL: string;
     OwnerCheck: boolean;
 }
+
+export type TMediaPassword = {
+    URL: string;
+    password: string;
+}
