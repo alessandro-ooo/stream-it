@@ -7,13 +7,8 @@ import { TMediaPassword, TVisibilityFields, TVisibilityForm } from "./types";
 import { useForm } from 'react-hook-form';
 
 const MediaPasswordForm = (props: TMediaPassword) => {
-    const passRef = useRef<null | HTMLFormElement>(null);
 
-    const handleUnmount = () => {
-        passRef.current = null;
-    };
-
-    const { URL, password } = props;
+    const { URL } = props;
     const {
         register,
         handleSubmit,
@@ -23,17 +18,22 @@ const MediaPasswordForm = (props: TMediaPassword) => {
     } = useForm<TVisibilityFields>({
         defaultValues: {
             password: '',
-            URL: URL,
+            URL: URL
         }
     });
 
     return (
-        <form ref={passRef}
+        <form
             onSubmit={handleSubmit(async (data) => {
-                handleUnmount();
-                console.log("g")
+                    const res: Response = await fetch('/api/comparePassword', {
+                        method: "POST",
+                        headers: {
+                            'Content-Type': 'application/json'
+                        },
+                        body: JSON.stringify(data)
+                    });
 
-                // return the result please
+                    console.log(await res.json());
             })}
         >
             <Input 

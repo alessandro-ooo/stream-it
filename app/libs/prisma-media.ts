@@ -94,4 +94,26 @@ const setMediaPassword = async (URL: string, password: string) => {
     });
 }
 
-export { getMedia, getAllUserMedia, insertMedia, updateMediaName, deleteMedia, hasPassword, setMediaPassword, setMediaVisibility};
+const getHashedPassword = async (URL: string, hash: string) => {
+    const res = await prisma.passwords.findMany({
+        where: {
+            AND: [
+                {
+                    url: {
+                        contains: URL
+                    }
+                },
+                {
+                    password: {
+                        contains: hash
+                    }
+                }
+            ]
+        },
+        select: { password: true }
+    });
+
+    return (res.length != 0 ? res[0].password : false);
+}
+
+export { getMedia, getAllUserMedia, insertMedia, updateMediaName, deleteMedia, hasPassword, setMediaPassword, setMediaVisibility, getHashedPassword};

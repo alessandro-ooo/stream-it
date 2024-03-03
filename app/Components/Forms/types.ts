@@ -10,5 +10,4 @@ export type TVisibilityFields = {
 
 export type TMediaPassword = {
     URL: string;
-    password: string;
 }
