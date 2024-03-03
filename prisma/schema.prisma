@@ -33,3 +33,8 @@ model Passwords {
     url String
     password String @id
 }
+
+model AllowList {
+    url String
+    user String @id
+}
