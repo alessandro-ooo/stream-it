@@ -7,15 +7,14 @@ import { cookies } from "next/headers";
 
 export async function POST (request: NextRequest) {
     const data: TVisibilityFields = await request.json();
-    const hash = await bcrypt.hashSync(data.password);
-    console.log(hash);
 
-    // const result: string | false = await getHashedPassword(data.URL, hash);
-    // fix ^^ need to get pass
-    if(result == false) {
+    const result: string | false = await getHashedPassword(data.URL);
+    const rightPassword: boolean = bcrypt.compareSync(data.password, result as string);
+
+    if(rightPassword == false) {
         return NextResponse.json({success: false});
     }
 
     await allowUser(data.URL, cookies().get('email')?.value as string);
-    return NextResponse.redirect(`/${data.URL}`);
+    return NextResponse.json({success: true});
 }

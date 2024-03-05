@@ -11,3 +11,7 @@ export type TVisibilityFields = {
 export type TMediaPassword = {
     URL: string;
 }
+
+export type TResponse = {
+    success: boolean;
+}

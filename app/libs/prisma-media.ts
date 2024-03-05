@@ -71,7 +71,7 @@ const setMediaVisibility = async (URL: string, ownerOnly: boolean) => {
 }
 
 const setMediaPassword = async (URL: string, password: string) => {
-    const hash = await bcrypt.hashSync(password);
+    const hash = await bcrypt.hashSync(password, 8);
     const hasPass = await hasPassword(URL);
     
     if(hasPass  == null) {
@@ -94,7 +94,7 @@ const setMediaPassword = async (URL: string, password: string) => {
     });
 }
 
-const getHashedPassword = async (URL: string, hash: string) => {
+const getHashedPassword = async (URL: string) => {
     const res = await prisma.passwords.findMany({
         where: {
             AND: [
@@ -103,11 +103,6 @@ const getHashedPassword = async (URL: string, hash: string) => {
                         contains: URL
                     }
                 },
-                {
-                    password: {
-                        contains: hash
-                    }
-                }
             ]
         },
         select: { password: true }

@@ -3,8 +3,9 @@
 import CTA from "../Inputs/Buttons";
 import { useRef } from 'react';
 import {Checkbox, Input} from "../Inputs/Inputs";
-import { TMediaPassword, TVisibilityFields, TVisibilityForm } from "./types";
+import { TMediaPassword, TResponse, TVisibilityFields, TVisibilityForm } from "./types";
 import { useForm } from 'react-hook-form';
+import { useRouter } from "next/navigation";
 
 const MediaPasswordForm = (props: TMediaPassword) => {
 
@@ -22,6 +23,8 @@ const MediaPasswordForm = (props: TMediaPassword) => {
         }
     });
 
+    const router = useRouter();
+
     return (
         <form
             onSubmit={handleSubmit(async (data) => {
@@ -33,7 +36,11 @@ const MediaPasswordForm = (props: TMediaPassword) => {
                         body: JSON.stringify(data)
                     });
 
-                    console.log(await res.json());
+                    const response: TResponse = await res.json();
+
+                    if(response.success == true) {
+                        router.push(`/${data.URL}`);
+                    } 
             })}
         >
             <Input 
