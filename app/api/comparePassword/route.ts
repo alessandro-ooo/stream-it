@@ -2,7 +2,7 @@ import { TMediaPassword, TVisibilityFields } from "@/app/Components/Forms/types"
 import { getHashedPassword, setMediaPassword, setMediaVisibility } from "@/app/libs/prisma-media";
 import { NextRequest, NextResponse } from "next/server";
 import bcrypt from 'bcryptjs';
-import { allowUser } from "@/app/libs/prisma-passwords";
+import { allowUser, isUserAllowed } from "@/app/libs/prisma-passwords";
 import { cookies } from "next/headers";
 
 export async function POST (request: NextRequest) {
@@ -14,7 +14,7 @@ export async function POST (request: NextRequest) {
     if(rightPassword == false) {
         return NextResponse.json({success: false});
     }
-
+    
     await allowUser(data.URL, cookies().get('email')?.value as string);
     return NextResponse.json({success: true});
 }

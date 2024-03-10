@@ -8,7 +8,7 @@ import { useForm } from 'react-hook-form';
 import { useRouter } from "next/navigation";
 
 const MediaPasswordForm = (props: TMediaPassword) => {
-
+    const delay = (ms: number) => new Promise(res => setTimeout(res, ms));
     const { URL } = props;
     const {
         register,
@@ -39,7 +39,8 @@ const MediaPasswordForm = (props: TMediaPassword) => {
                     const response: TResponse = await res.json();
 
                     if(response.success == true) {
-                        router.push(`/${data.URL}`);
+                        await delay(1000);
+                        return router.push(`/${data.URL}`);
                     } 
             })}
         >

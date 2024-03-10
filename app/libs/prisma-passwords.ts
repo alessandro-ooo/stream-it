@@ -22,6 +22,7 @@ const isUserAllowed = async (URL: string, user: string) => {
 }
 
 const allowUser = async (URL: string, user: string) => {
+
     const res = await prisma.allowList.create({
         data: {
             url: URL,
