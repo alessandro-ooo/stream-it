@@ -7,6 +7,7 @@ import { getServerSession } from "next-auth/next"
 import { authOptions } from "../api/auth/[...nextauth]/route";
 import VisibilityForm from "../Components/Forms/VisibilityForm";
 import Modal from "../Components/Modal/Modal";
+import Carousel from "../Components/Carousel/Carousel";
 
 type SearchParamProps = {
     searchParams: Record<string, string> | null | undefined;
@@ -49,7 +50,18 @@ const Index = async ({ searchParams }: SearchParamProps) => {
         return (
             <DnD>
                 <Navbar />
-                <p>this is the landing page...</p>
+                    <div 
+                        className="w-full pt-12"
+                    >
+                        <h1 
+                            className="font-bold text-gray-900 text-7xl text-center"
+                        >
+                            Open source video hosting
+                        </h1>
+                        <div>
+                            <Carousel />
+                        </div>
+                    </div>
             </DnD>
         );
     }
