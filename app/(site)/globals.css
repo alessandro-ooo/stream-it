@@ -1,3 +1,23 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+.carousel {
+    overflow: hidden;
+    padding: 60px 0;
+    white-space: nowrap;
+    position: relative;
+  }
+
+.carousel-slide {
+    animation: 10s slide infinite linear;
+  }
+
+  @keyframes slide {
+    from {
+      transform: translateX(100%);
+    }
+    to {
+      transform: translateX(-100%);
+    }
+  }
