@@ -8,11 +8,14 @@ import { authOptions } from "../api/auth/[...nextauth]/route";
 import VisibilityForm from "../Components/Forms/VisibilityForm";
 import Modal from "../Components/Modal/Modal";
 import Carousel from "../Components/Carousel/Carousel";
+import Text from "../Components/Typography/Paragraphs";
+import Image from "next/image";
+import Card from "../Components/Card/Card";
 
 type SearchParamProps = {
     searchParams: Record<string, string> | null | undefined;
-  };
-  
+};
+
 const Index = async ({ searchParams }: SearchParamProps) => {
     const session = await getServerSession(authOptions);
     const visibilityModal = searchParams?.visibility;
@@ -23,13 +26,13 @@ const Index = async ({ searchParams }: SearchParamProps) => {
         return (
             <DnD>
                 {
-                    visibilityModal && 
-                        <Modal>
-                            <VisibilityForm 
-                                URL={URL as string} 
-                                OwnerCheck={false}
-                            />
-                        </Modal>
+                    visibilityModal &&
+                    <Modal>
+                        <VisibilityForm
+                            URL={URL as string}
+                            OwnerCheck={false}
+                        />
+                    </Modal>
                 }
                 <Navbar />
                 <Collection reactClass="e">
@@ -45,23 +48,66 @@ const Index = async ({ searchParams }: SearchParamProps) => {
             </DnD>
         );
     }
-    
-    if(session == null) {
+
+    if (session == null) {
         return (
             <DnD>
                 <Navbar />
-                    <div 
-                        className="w-full pt-12"
+                <div
+                    className="w-full pt-12"
+                >
+                    <h1
+                        className="font-bold text-gray-900 text-7xl text-center pb-20"
                     >
-                        <h1 
-                            className="font-bold text-gray-900 text-7xl text-center"
+                        Open source video hosting
+                    </h1>
+                    <div
+                        className="flex flex-row place-content-center"
+                    >
+                        <div
+                            className="absolute bg-gray-50 z-50 place-self-center flex flex-col place-content-center pb-24 pt-24 pr-32 pl-32 border border-gray-400 rounded-2xl"
                         >
-                            Open source video hosting
-                        </h1>
-                        <div>
-                            <Carousel />
+                            <Text
+                                fweight="font-semibold"
+                                fsize="text-lg"
+                                extra="text-center text-gray-900"
+                            >
+                                Drag n Drop your clip here
+                            </Text>
+
+                            <Text
+                                fweight="font-normal"
+                                fsize="text-lg"
+                                extra="pt-2.5 pb-2.5 text-center text-gray-900"
+                            >
+                                No credit card or account is required.
+                            </Text>
+                            <Image
+                                src="/Cloud_Upload.svg"
+                                alt="icon"
+                                height={100}
+                                width={100}
+                                className="place-self-center"
+                            />
                         </div>
+                        <Carousel />
                     </div>
+                </div>
+
+                <Card 
+                    title="Protect your clips" 
+                    text="With stream-it you can protect your clips with passwords or owner-only privileges at any time, for free." 
+                    img="1.gif" 
+                    flex="flex-row"
+                    blurred                
+                />
+
+                <Card 
+                    title="Your clips will be saved forever" 
+                    text="We at stream-it will never charge you money for space and will *never delete your clips after a short period of time. *As long as it doesn’t excess the AWS usage." 
+                    img="1.gif" 
+                    flex="flex-row-reverse"                
+                />
             </DnD>
         );
     }
