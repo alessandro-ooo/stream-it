@@ -54,7 +54,7 @@ const Index = async ({ searchParams }: SearchParamProps) => {
             <DnD>
                 <Navbar />
                 <div
-                    className="w-full pt-12"
+                    className="w-full pt-12 pb-24"
                 >
                     <h1
                         className="font-bold text-gray-900 text-7xl text-center pb-20"
@@ -101,13 +101,14 @@ const Index = async ({ searchParams }: SearchParamProps) => {
                     flex="flex-row"
                     blurred                
                 />
-
                 <Card 
-                    title="Your clips will be saved forever" 
-                    text="We at stream-it will never charge you money for space and will *never delete your clips after a short period of time. *As long as it doesn’t excess the AWS usage." 
-                    img="1.gif" 
+                    title="Stored forever" 
+                    text="We will never charge you money for space and will never delete your clips because they are getting old." 
+                    img="2.gif" 
                     flex="flex-row-reverse"                
                 />
+
+                
             </DnD>
         );
     }
