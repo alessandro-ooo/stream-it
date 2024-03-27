@@ -11,6 +11,7 @@ import Carousel from "../Components/Carousel/Carousel";
 import Text from "../Components/Typography/Paragraphs";
 import Image from "next/image";
 import Card from "../Components/Card/Card";
+import Footer from "../Components/Footer/Footer";
 
 type SearchParamProps = {
     searchParams: Record<string, string> | null | undefined;
@@ -19,10 +20,10 @@ type SearchParamProps = {
 const Index = async ({ searchParams }: SearchParamProps) => {
     const session = await getServerSession(authOptions);
     const visibilityModal = searchParams?.visibility;
-    const URL = searchParams?.URL;
+    const URL = searchParams?.URL, page = searchParams?.page
 
     if (session != null) {
-        const media = await getAllUserMedia(session.user?.email as string);
+        const media = await getAllUserMedia(session.user?.email as string, (page == undefined ? 1 : page as unknown as number));
         return (
             <DnD>
                 {
@@ -35,7 +36,7 @@ const Index = async ({ searchParams }: SearchParamProps) => {
                     </Modal>
                 }
                 <Navbar />
-                <Collection reactClass="e">
+                <Collection reactClass="flex flex-row justify-center space-x-12">
                     {media.map((vid, i: number) => {
                         return (
                             <Media
@@ -108,7 +109,107 @@ const Index = async ({ searchParams }: SearchParamProps) => {
                     flex="flex-row-reverse"                
                 />
 
-                
+                <Footer>
+                    <div
+                        className="flex flex-col space-y-2"
+                    >
+                        <Text
+                            fweight="font-semibold"
+                            fsize="text-regular"
+                            extra="text-gray-900"
+                        >
+                            Github
+                        </Text>
+
+                        <Text
+                            fweight="font-normal"
+                            fsize="text-regular"
+                            extra="text-gray-900"
+                        >
+                            <a>Documentation</a>
+                        </Text>
+
+                        <Text
+                            fweight="font-normal"
+                            fsize="text-regular"
+                            extra="text-gray-900"
+                        >
+                            <a>How to set up AWS S3 Bucket</a>
+                        </Text>
+                    </div>
+
+                    <div
+                        className="flex flex-col space-y-2"
+                    >
+                        <Text
+                            fweight="font-semibold"
+                            fsize="text-regular"
+                            extra="text-gray-900"
+                        >
+                            Technologies
+                        </Text>
+
+                        <Text
+                            fweight="font-normal"
+                            fsize="text-regular"
+                            extra="text-gray-900"
+                        >
+                            <a>NextJS 14.1</a>
+                        </Text>
+
+                        <Text
+                            fweight="font-normal"
+                            fsize="text-regular"
+                            extra="text-gray-900"
+                        >
+                            <a>Prisma ORM</a>
+                        </Text>
+
+                        <Text
+                            fweight="font-normal"
+                            fsize="text-regular"
+                            extra="text-gray-900"
+                        >
+                            <a>TailwindCSS</a>
+                        </Text>
+
+                        <Text
+                            fweight="font-normal"
+                            fsize="text-regular"
+                            extra="text-gray-900"
+                        >
+                            <a>BcryptJS</a>
+                        </Text>
+
+                        <Text
+                            fweight="font-normal"
+                            fsize="text-regular"
+                            extra="text-gray-900"
+                        >
+                            <a>AWS S3 Bucket</a>
+                        </Text>
+                    </div>
+
+                    <div
+                        className="flex flex-col space-y-2"
+                    >
+                        <Text
+                            fweight="font-semibold"
+                            fsize="text-regular"
+                            extra="text-gray-900"
+                        >
+                            Creator
+                        </Text>
+                        
+                        <Text
+                            fweight="font-normal"
+                            fsize="text-regular"
+                            extra="text-gray-900"
+                        >
+                            <a>Alessandro Buonocore</a>
+                        </Text>
+                    </div>
+                </Footer>
             </DnD>
         );
     }

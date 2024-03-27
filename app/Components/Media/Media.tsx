@@ -7,6 +7,7 @@ import Settings from "./Settings";
 
 const Media = (props: TMedia) => {
     const { URL, name } = props;
+    const linkToVid: string = process.env.NEXT_PUBLIC_DOMAIN + "/" + URL;
     const {
         register,
         watch,
@@ -17,16 +18,19 @@ const Media = (props: TMedia) => {
         }
     });
     return (
-        <div>
-            <video
-                height={100}
-                width={100}
+        <div 
+            className="w-96 max-w-96"
+        >
+            <Link
+                href={URL}
             >
-                <source type="video/mp4" src={`https://stream-it.s3.eu-west-2.amazonaws.com/${URL}#t=2`} />
-            </video>
-
-            <Link href={`/${URL}`}>
-            {process.env.NEXT_PUBLIC_DOMAIN}{URL}
+                <video
+                    className="rounded-tl-3xl rounded-tr-xl border-2 border-gray-400 border-solid"
+                    height={350}
+                    width={600}
+                >
+                    <source type="video/mp4" src={`https://stream-it.s3.eu-west-2.amazonaws.com/${URL}#t=2`} />
+                </video>
             </Link>
 
             <form 
@@ -50,7 +54,6 @@ const Media = (props: TMedia) => {
             </form>
 
             <div>
-                <button>copy link</button>
                 <Settings URL={URL} />
             </div>
         </div>
