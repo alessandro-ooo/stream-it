@@ -37,8 +37,18 @@ const getMedia = async (id: string) => {
     return res;
 }
 
-const getAllUserMedia = async (email: string) => {
-    const res = await prisma.media.findMany({where: {user: email} })
+const getAllUserMedia = async (email: string, page: number): Promise<{
+    id: string;
+    user: string;
+    name: string;
+    privacy: boolean;
+}[]> => {
+    page--;
+    const res = await prisma.media.findMany({
+        where: {user: email},
+        skip: page * 12,
+        take: 12
+    });
     return res;
 }
 
