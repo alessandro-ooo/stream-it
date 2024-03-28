@@ -29,14 +29,15 @@ const Settings = (props: TSettings) => {
             className="flex flex-row"
         >
             <li 
-                className="bg-neutral-300 text-gray-900 font-semibold text-lg w-1/2 flex justify-center p-1 rounded-bl-2xl border-2 border-gray-400 border-solid"
+                className="p-2 bg-gray-100 text-gray-900 font-semibold text-base w-1/2 flex justify-center p-1 rounded-bl-2xl border border-gray-400 border-solid"
                 id={URL}
+                key={URL}
                 onClick={(mid) => api_deleteMedia(mid.currentTarget.id)}
             >
-                Delete
+                <Link href="">Delete</Link>
             </li>
             <li 
-                className="bg-neutral-300 text-gray-900 font-semibold text-lg w-1/2 flex justify-center p-1 rounded-br-2xl border-2 border-l-0 border-gray-400 border-solid"
+                className="p-2 bg-gray-100 text-gray-900 font-semibold text-base w-1/2 flex justify-center p-1 rounded-br-2xl border border-l-0 border-gray-400 border-solid"
             >
                 <Link 
                     href={customRef}>
