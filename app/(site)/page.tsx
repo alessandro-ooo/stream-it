@@ -36,7 +36,7 @@ const Index = async ({ searchParams }: SearchParamProps) => {
                     </Modal>
                 }
                 <Navbar />
-                <Collection reactClass="flex flex-row justify-center space-x-12">
+                <Collection reactClass="grid justify-items-center grid-cols-3 gap-y-10 pl-32 pr-32">
                     {media.map((vid, i: number) => {
                         return (
                             <Media

@@ -6,7 +6,7 @@ import Link from "next/link";
 import Settings from "./Settings";
 
 const Media = (props: TMedia) => {
-    const { URL, name } = props;
+    const { URL, name} = props;
     const linkToVid: string = process.env.NEXT_PUBLIC_DOMAIN + "/" + URL;
     const {
         register,
@@ -19,17 +19,18 @@ const Media = (props: TMedia) => {
     });
     return (
         <div 
-            className="w-96 max-w-96"
+            className=""
         >
             <Link
                 href={URL}
             >
                 <video
-                    className="rounded-tl-3xl rounded-tr-xl border-2 border-gray-400 border-solid"
-                    height={350}
-                    width={600}
+                    className="rounded-tl-3xl rounded-tr-xl border border-gray-400 border-solid w-96 h-42"
                 >
-                    <source type="video/mp4" src={`https://stream-it.s3.eu-west-2.amazonaws.com/${URL}#t=2`} />
+                    <source 
+                        type="video/mp4" 
+                        src={`https://stream-it.s3.eu-west-2.amazonaws.com/${URL}#t=2`}
+                    />
                 </video>
             </Link>
 
