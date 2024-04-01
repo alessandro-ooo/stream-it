@@ -6,20 +6,20 @@ import { redirect } from "next/navigation";
 
 const Media = async ({ params }: { params: { slug: string } }) => {
     const media = await getMedia(params.slug);
-    const hasPass: string | null = await hasPassword(media?.id as string);
+    const hasPass: string | null = await hasPassword(media!.url);
     
     if(hasPass != null) {
-        const isAllowed: boolean = await isUserAllowed(media!.id as string, cookies().get('email')?.value as string);
+        const isAllowed: boolean = await isUserAllowed(media!.url, cookies().get('email')?.value as string);
 
         if(isAllowed == false) {
-            redirect(`/access?to=${media?.id}`);
+            redirect(`/access?to=${media?.url}`);
         }
     }
 
     return (
         <div>
             <Player 
-                URL={media?.id as string} 
+                URL={media?.url as unknown as string} 
                 name={media?.name as string} 
             />
         </div>

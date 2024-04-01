@@ -40,7 +40,7 @@ const Index = async ({ searchParams }: SearchParamProps) => {
                     {media.map((vid, i: number) => {
                         return (
                             <Media
-                                URL={vid.id}
+                                URL={vid.url}
                                 name={vid.name}
                             />
                         )
