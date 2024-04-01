@@ -8,7 +8,7 @@ const insertMedia = async (name: string, uploader: string) => {
 
     const res = await prisma.media.create({
         data: {
-            id: id,
+            url: id,
             name: name,
             user: uploader
         }
@@ -19,7 +19,7 @@ const insertMedia = async (name: string, uploader: string) => {
 
 const deleteMedia = async (url: string) => {
     const res = await prisma.media.delete({
-        where: {id: url}
+        where: {url: url}
     });
 
     return res;
@@ -27,33 +27,28 @@ const deleteMedia = async (url: string) => {
 
 const updateMediaName = async (id: string, name: string) => {
     await prisma.media.update({
-        where: {id: id},
+        where: {url: id},
         data: {name: name}
     });
 }
 
 const getMedia = async (id: string) => {
-    const res = await prisma.media.findUnique({where: {id: id}});
+    const res = await prisma.media.findUnique({where: {url: id}});
     return res;
 }
 
-const getAllUserMedia = async (email: string, page: number): Promise<{
-    id: string;
-    user: string;
-    name: string;
-    privacy: boolean;
-}[]> => {
+const getAllUserMedia = async (email: string, page: number) => {
     page--;
     const res = await prisma.media.findMany({
         where: {user: email},
-        skip: page * 12,
-        take: 12
+        skip: page * 9,
+        take: 9
     });
     return res;
 }
 
 const hasPassword = async (URL: string) => {
-    const res = await prisma.passwords.findMany({
+    const res = await prisma.passwords.findFirst({
         where: {
             url: URL
         },
@@ -62,17 +57,17 @@ const hasPassword = async (URL: string) => {
         }
     });
 
-    if(res.length == 0) {
+    if(res == null) {
         return null;
     }
 
-    return res[0].password;
+    return res.password;
 }
 
 const setMediaVisibility = async (URL: string, ownerOnly: boolean) => {
     await prisma.media.update({
         where: {
-            id: URL
+            url: URL
         },
         data: {
             privacy: ownerOnly
