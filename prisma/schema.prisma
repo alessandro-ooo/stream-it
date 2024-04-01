@@ -20,16 +20,15 @@ model User {
 }
 
 model Media {
-    id String @unique
+    id   Int @id @default(autoincrement())
+    url String @unique
     uploader User @relation(fields: [user], references: [email])
     user String
     name String
     privacy Boolean @default(false)
-    password Passwords[]
 }
 
 model Passwords {
-    media Media @relation(fields: [url], references: [id])
     url String
     password String @id
 }
