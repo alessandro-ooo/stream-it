@@ -1,6 +1,6 @@
 "use client"
 
-import CTA from "../Inputs/Buttons";
+import { CTA } from "../Inputs/Buttons";
 import { useRef } from 'react';
 import {Checkbox, Input} from "../Inputs/Inputs";
 import { TMediaPassword, TResponse, TVisibilityFields, TVisibilityForm } from "./types";
