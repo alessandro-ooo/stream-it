@@ -37,8 +37,8 @@ const Index = async ({ searchParams }: SearchParamProps) => {
                     </Modal>
                 }
                 <Navbar />
-                <Collection reactClass="grid justify-items-center grid-cols-3 gap-y-10 pl-32 pr-32">
-                    {media.map((vid, i: number) => {
+                <Collection>
+                    {media.map((vid) => {
                         return (
                             <Media
                                 URL={vid.url}
@@ -48,7 +48,7 @@ const Index = async ({ searchParams }: SearchParamProps) => {
                     })}
                 </Collection>
 
-                <Pagination current={1} pages={10} />
+                <Pagination current={10} pages={10} />
             </DnD>
         );
     }
