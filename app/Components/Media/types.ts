@@ -5,7 +5,6 @@ export type TPlayer = {
 
 export type TCollection = {
     children: React.ReactNode;
-    reactClass: string;
 }
 
 export type TMedia = {
