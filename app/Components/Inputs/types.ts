@@ -1,3 +1,5 @@
+import { SignInResponse } from "next-auth/react";
+
 export type TMediaName = {
     value?: string;
 }
@@ -12,6 +14,7 @@ export type TInputs = {
 
 export type Tbuttons = {
     text: string;
+    fn?: () => Promise<SignInResponse | undefined> | (() => Promise<void>) | (() => void);
 }
 
 export type TCheckbox = {
