@@ -3,6 +3,7 @@ import { signIn, signOut } from "next-auth/react";
 import { TNavbar } from "./types";
 import { useSession } from "next-auth/react";
 import Image from "next/image";
+import {CTA, Ghost} from "../Inputs/Buttons";
 
 const Navbar = (props: TNavbar) => {
     const { data: session } = useSession();
@@ -23,19 +24,15 @@ const Navbar = (props: TNavbar) => {
                     <div
                         className="flex flex-row space-x-10"
                     >
-                        <button
-                            className="py-3 px-4 inline-flex items-center gap-x-2 text-lg font-semibold rounded-lg border border-transparent text-gray-900 hover:bg-gray-100"
-                            onClick={() => signIn('google', { callbackUrl: '/' })}
-                        >
-                            Login 
-                        </button>
+                        <Ghost
+                            text="Login"
+                            fn={() => signIn('google', { callbackUrl: '/' })}
+                        />
 
-                        <button 
-                            className="py-3 px-4 inline-flex items-center gap-x-2 text-lg font-bold rounded-lg border border-transparent bg-blue-500 text-white hover:bg-blue-700"
-                            onClick={() => signIn('google', { callbackUrl: '/' })}
-                        >
-                                Sign up for free
-                        </button>
+                        <CTA
+                            text="Sign up for free"
+                            fn={() => signIn('google', { callbackUrl: '/' })}
+                        />
                     </div>
                 </div>
             }
