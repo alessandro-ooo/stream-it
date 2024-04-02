@@ -12,6 +12,7 @@ import Text from "../Components/Typography/Paragraphs";
 import Image from "next/image";
 import Card from "../Components/Card/Card";
 import Footer from "../Components/Footer/Footer";
+import Pagination from "../Components/Pagination/Pagination";
 
 type SearchParamProps = {
     searchParams: Record<string, string> | null | undefined;
@@ -46,6 +47,8 @@ const Index = async ({ searchParams }: SearchParamProps) => {
                         )
                     })}
                 </Collection>
+
+                <Pagination current={1} pages={10} />
             </DnD>
         );
     }
