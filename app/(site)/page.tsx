@@ -48,7 +48,7 @@ const Index = async ({ searchParams }: SearchParamProps) => {
                     })}
                 </Collection>
 
-                <Pagination current={10} pages={10} />
+                <Pagination current={(page == undefined ? 1 : parseInt(page))} pages={10} />
             </DnD>
         );
     }

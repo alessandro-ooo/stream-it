@@ -3,30 +3,40 @@ import { TPagination } from "./types"
 
 const Pagination = (props: TPagination) => {
     const { pages, current } = props;
-    const pageZero: number = current-1;
+    const pageZero: number = current - 1;
 
-    if(pages <= 3) {
-        if(current+1 == pages) {
+    if (pages <= 3) {
+        if (current + 1 == pages) {
             return (
                 <div
                     className="flex flex-row space-x-4 w-full justify-center my-12"
                 >
                     {pageZero != 0 &&
-                        <Ghost
-                            text={`${current-1}`}
-                        />                   
+                        <a
+                            href={`/?page=${current - 1}`}>
+                            <Ghost
+                                text={`${current - 1}`}
+                            />
+                        </a>
                     }
-                    <CTA
-                        text={`${current}`}
-                    />
-                    <Ghost
-                        text={`${pages}`}
-                    />
+                    <a
+                        href={`/?page=${current}`}>
+                        <CTA
+                            text={`${current}`}
+                        />
+                    </a>
+
+                    <a
+                        href={`/?page=${pages}`}>
+                        <Ghost
+                            text={`${pages}`}
+                        />
+                    </a>
                 </div>
             )
         }
 
-        if(current+2 == pages) {
+        if (current + 2 == pages) {
             return (
                 <div
                     className="flex flex-row space-x-4 w-full justify-center my-12"
@@ -34,15 +44,27 @@ const Pagination = (props: TPagination) => {
                     <Ghost
                         text={`<`}
                     />
-                    <CTA
-                        text={`${current}`}
-                    />
-                    <Ghost
-                        text={`${current+1}`}
-                    />
-                    <Ghost
-                        text={`${current+2}`}
-                    />
+                    <a
+                        href={`/?page=${current}`}>
+                        <CTA
+                            text={`${current}`}
+                        />
+                    </a>
+
+                    <a
+                        href={`/?page=${current + 1}`}>
+                        <Ghost
+                            text={`${current + 1}`}
+                        />
+                    </a>
+
+                    <a
+                        href={`/?page=${current + 2}`}>
+                        <Ghost
+                            text={`${current + 2}`}
+                        />
+                    </a>
+
                     <Ghost
                         text={`>`}
                     />
@@ -51,7 +73,7 @@ const Pagination = (props: TPagination) => {
         }
     }
 
-    if(current+1 == pages) {
+    if (current + 1 == pages) {
         return (
             <div
                 className="flex flex-row space-x-4 w-full justify-center my-12"
@@ -59,15 +81,26 @@ const Pagination = (props: TPagination) => {
                 <Ghost
                     text="<"
                 />
-                <Ghost
-                    text={`${current - 1}`}
-                />                   
-                <CTA
-                    text={`${current}`}
-                />
-                <Ghost
-                    text={`${pages}`}
-                />
+                <a
+                    href={`/?page=${current - 1}`}>
+                    <Ghost
+                        text={`${current - 1}`}
+                    />
+                </a>
+
+                <a
+                    href={`/?page=${current}`}>
+                    <CTA
+                        text={`${current}`}
+                    />
+                </a>
+
+                <a
+                    href={`/?page=${pages}`}>
+                    <Ghost
+                        text={`${pages}`}
+                    />
+                </a>
                 <Ghost
                     text="..."
                 />
@@ -78,8 +111,8 @@ const Pagination = (props: TPagination) => {
         )
     }
 
-    if(pages == current) {
-        return(
+    if (pages == current) {
+        return (
             <div
                 className="flex flex-row space-x-4 w-full justify-center my-12"
             >
@@ -87,17 +120,26 @@ const Pagination = (props: TPagination) => {
                     text="<"
                 />
 
-                <Ghost
-                    text={`${pages - 2}`}
-                />
+                <a
+                    href={`/?page=${current - 2}`}>
+                    <Ghost
+                        text={`${current - 2}`}
+                    />
+                </a>
 
-                <Ghost
-                    text={`${pages - 1}`}
-                />
+                <a
+                    href={`/?page=${pages - 1}`}>
+                    <Ghost
+                        text={`${pages - 1}`}
+                    />
+                </a>
 
-                <CTA
-                    text={`${pages}`}
-                />
+                <a
+                    href={`/?page=${pages}`}>
+                    <CTA
+                        text={`${pages}`}
+                    />
+                </a>
 
                 <Ghost
                     text="..."
@@ -110,7 +152,7 @@ const Pagination = (props: TPagination) => {
             </div>
         )
     }
-    return(
+    return (
         <div
             className="flex flex-row space-x-4 w-full justify-center my-12"
         >
@@ -118,25 +160,37 @@ const Pagination = (props: TPagination) => {
                 text="<"
             />
 
-            <CTA
-                text={`${current}`}
-            />
+            <a
+                href={`/?page=${current}`}>
+                <CTA
+                    text={`${current}`}
+                />
+            </a>
 
-            <Ghost
-                text={`${current+1}`}
-            />
+            <a
+                href={`/?page=${current + 1}`}>
+                <Ghost
+                    text={`${current + 1}`}
+                />
+            </a>
 
-            <Ghost
-                text={`${current+2}`}
-            />  
+            <a
+                href={`/?page=${current + 2}`}>
+                <Ghost
+                    text={`${current + 2}`}
+                />
+            </a>
 
             <Ghost
                 text="..."
             />
 
-            <Ghost
-                text={`${pages}`}
-            />
+            <a
+                href={`/?page=${pages}`}>
+                <Ghost
+                    text={`${pages}`}
+                />
+            </a>
 
             <Ghost
                 text=">"
@@ -194,7 +248,7 @@ const Pagination = (props: TPagination) => {
 
 
 
-            {/* <Ghost 
+    {/* <Ghost 
                 text="<"
             />
             <CTA 
@@ -244,7 +298,7 @@ const Pagination = (props: TPagination) => {
             <Ghost 
                 text=">"
             /> */}
-        // </div>
+    // </div>
     // )
 }
 
