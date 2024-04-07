@@ -9,7 +9,7 @@ const Pagination = (props: TPagination) => {
         if (current + 1 == pages) {
             return (
                 <div
-                    className="flex flex-row space-x-4 w-full justify-center my-12"
+                    className="flex flex-row space-x-4 w-full justify-center mt-32 mb-12"
                 >
                     {pageZero != 0 &&
                         <a
@@ -39,7 +39,7 @@ const Pagination = (props: TPagination) => {
         if (current + 2 == pages) {
             return (
                 <div
-                    className="flex flex-row space-x-4 w-full justify-center my-12"
+                    className="flex flex-row space-x-4 w-full justify-center mt-32 mb-12"
                 >
                     <Ghost
                         text={`<`}
@@ -76,7 +76,7 @@ const Pagination = (props: TPagination) => {
     if (current + 1 == pages) {
         return (
             <div
-                className="flex flex-row space-x-4 w-full justify-center my-12"
+                className="flex flex-row space-x-4 w-full justify-center mt-32 mb-12"
             >
                 <Ghost
                     text="<"
@@ -114,7 +114,7 @@ const Pagination = (props: TPagination) => {
     if (pages == current) {
         return (
             <div
-                className="flex flex-row space-x-4 w-full justify-center my-12"
+                className="flex flex-row space-x-4 w-full justify-center mt-32 mb-12"
             >
                 <Ghost
                     text="<"
@@ -154,7 +154,7 @@ const Pagination = (props: TPagination) => {
     }
     return (
         <div
-            className="flex flex-row space-x-4 w-full justify-center my-12"
+            className="flex flex-row space-x-4 w-full justify-center mt-32 mb-12"
         >
             <Ghost
                 text="<"
@@ -205,7 +205,7 @@ const Pagination = (props: TPagination) => {
             {pages <= 3 &&
                 
                 <div
-                    className="flex flex-row space-x-4 w-full justify-center my-12"
+                    className="flex flex-row space-x-4 w-full justify-center mt-12"
                 >
                     <Ghost 
                         text="<"

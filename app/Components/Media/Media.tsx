@@ -19,13 +19,13 @@ const Media = (props: TMedia) => {
     });
     return (
         <div 
-            className=""
+            className="bg-red-100 max-w-96 h-52"
         >
             <Link
                 href={URL}
             >
                 <video
-                    className="rounded-tl-3xl rounded-tr-xl border border-gray-400 border-solid w-96 h-42"
+                    className="rounded-tl-3xl rounded-tr-xl border border-gray-400 border-solid gap-y-2 "
                 >
                     <source 
                         type="video/mp4" 

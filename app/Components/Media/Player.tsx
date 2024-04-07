@@ -10,8 +10,8 @@ const Player = (props: TPlayer) => {
             className="bg-red-100"
         >
             <video
-                className="w-full rounded-2xl"
-                height={400}
+                className="rounded-2xl"
+                height={100}
                 width={400}
                 controls
                 autoPlay>
