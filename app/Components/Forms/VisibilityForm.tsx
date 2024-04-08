@@ -59,9 +59,19 @@ const VisibilityForm = (props: TVisibilityForm) => {
                 disabled: (watch("OwnerCheck"))})}
             />
 
-            <CTA 
-                text="Save" 
-            />
+            <div 
+                className="flex flex-row justify-center space-x-12"
+            >
+                <CTA
+                    text="Save"
+                />
+
+                <CTA
+                    text="Abort"
+                    color="bg-red-500"
+                    hover="hover:bg-red-700"
+                />
+            </div>
         </form>
     )
 } 

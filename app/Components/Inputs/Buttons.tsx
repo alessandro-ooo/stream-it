@@ -1,11 +1,11 @@
 import { Tbuttons } from "./types";
 
 const CTA = (props: Tbuttons) => {
-    const { text, fn } = props;
+    const { text, fn, color = "bg-blue-500", hover = "hover:bg-blue-700"} = props;
     return (
         <button
             type="submit"
-            className="py-3 px-4 w-fit inline-flex items-center gap-x-2 text-lg font-bold rounded-lg border border-transparent bg-blue-500 text-white hover:bg-blue-700"
+            className={`${color} py-3 px-4 w-fit inline-flex items-center gap-x-2 text-lg font-bold rounded-lg border border-transparent text-white ${hover}`}
             onClick={fn}
         >
             {text}
