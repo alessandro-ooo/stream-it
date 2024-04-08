@@ -38,10 +38,11 @@ const DnD = (props: TDnD) => {
     }
 
     return (
-        <div
+        <div id="dragndrop"
             onDragOver={handleDragOver}
             onDragLeave={handleDragLeave}
             onDrop={handleDrop}
+            className={`z-10`}
         >
             {props.children}
         </div>

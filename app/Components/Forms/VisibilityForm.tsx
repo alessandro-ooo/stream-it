@@ -1,7 +1,8 @@
 "use client"
 
-import CTA from "../Inputs/Buttons";
+import { CTA } from "../Inputs/Buttons";
 import {Checkbox, Input} from "../Inputs/Inputs";
+import Text from "../Typography/Paragraphs";
 import { TVisibilityFields, TVisibilityForm } from "./types";
 import { useForm } from 'react-hook-form';
 
@@ -23,6 +24,7 @@ const VisibilityForm = (props: TVisibilityForm) => {
 
     return (
         <form
+            className="flex flex-col space-y-10"
             onSubmit={handleSubmit(async (data) => {
                 data.URL = URL;
                 console.log(data);
@@ -38,6 +40,12 @@ const VisibilityForm = (props: TVisibilityForm) => {
                 // return the result please
             })}
         >
+            <Text 
+                fweight={"font-semibold"} 
+                fsize={"text-xl"}
+            >
+                Choose the type of protection
+            </Text>
             <Checkbox 
                 text="Only owner" 
                 checked={OwnerCheck}
@@ -45,14 +53,14 @@ const VisibilityForm = (props: TVisibilityForm) => {
             />
             <Input 
                 type="password" 
-                label="Type a password" 
+                label="Password" 
                 placeholder="Password"
                 {...register("password", { required: true, minLength: 2, maxLength: 20,
                 disabled: (watch("OwnerCheck"))})}
             />
 
             <CTA 
-                text="Protect" 
+                text="Save" 
             />
         </form>
     )

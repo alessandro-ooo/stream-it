@@ -1,3 +1,3 @@
 export type TDnD = {
-    children: React.ReactNode
+    children: React.ReactNode;
 }

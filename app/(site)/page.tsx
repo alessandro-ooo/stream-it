@@ -26,30 +26,34 @@ const Index = async ({ searchParams }: SearchParamProps) => {
     if (session != null) {
         const media = await getAllUserMedia(session.user?.email as string, (page == undefined ? 1 : page as unknown as number));
         return (
-            <DnD>
+            <div>
                 {
                     visibilityModal &&
-                    <Modal>
-                        <VisibilityForm
-                            URL={URL as string}
-                            OwnerCheck={false}
-                        />
-                    </Modal>
-                }
-                <Navbar />
-                <Collection>
-                    {media.map((vid) => {
-                        return (
-                            <Media
-                                URL={vid.url}
-                                name={vid.name}
+                    <div className="flex items-center justify-center space-y-24 z-50 h-screen w-full absolute transition bg-gray-900 ease-in-out delay-500">
+                        <Modal>
+                            <VisibilityForm
+                                URL={URL as string}
+                                OwnerCheck={false}
                             />
-                        )
-                    })}
-                </Collection>
+                        </Modal>
+                    </div>
+                }
+                <DnD>
+                    <Navbar />
+                    <Collection>
+                        {media.map((vid) => {
+                            return (
+                                <Media
+                                    URL={vid.url}
+                                    name={vid.name}
+                                />
+                            )
+                        })}
+                    </Collection>
 
-                <Pagination current={(page == undefined ? 1 : parseInt(page))} pages={10} />
-            </DnD>
+                    <Pagination current={(page == undefined ? 1 : parseInt(page))} pages={10} />
+                </DnD>
+            </div>
         );
     }
 
