@@ -14,6 +14,8 @@ export type TInputs = {
 
 export type Tbuttons = {
     text: string;
+    color?: string;
+    hover?: string;
     fn?: () => Promise<SignInResponse | undefined> | (() => Promise<void>) | (() => void);
 }
 
