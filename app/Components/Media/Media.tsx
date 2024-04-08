@@ -19,7 +19,7 @@ const Media = (props: TMedia) => {
     });
     return (
         <div 
-            className="bg-red-100 max-w-96 h-52"
+            className="bg-red-100 max-w-96 h-52 static"
         >
             <Link
                 href={URL}
@@ -34,28 +34,30 @@ const Media = (props: TMedia) => {
                 </video>
             </Link>
 
-            <form 
-                onKeyDown={async e =>  {
-                    
-                    if(e.key == "Enter") {
-                        e.preventDefault();
-                        const newName = watch('name');
+            <div className="flex flex-col">
+                <form 
+                    onKeyDown={async e =>  {
+                        
+                        if(e.key == "Enter") {
+                            e.preventDefault();
+                            const newName = watch('name');
 
-                        await fetch('/api/updateMediaName', {
-                            method: 'POST',
-                            body: JSON.stringify({URL, newName})
-                        });
-                    }
-                }}
-            >
-                <MediaName 
-                    value={name} 
-                    {...register("name", { required: false, minLength: 2, maxLength: 20})} 
-                />
-            </form>
+                            await fetch('/api/updateMediaName', {
+                                method: 'POST',
+                                body: JSON.stringify({URL, newName})
+                            });
+                        }
+                    }}
+                >
+                    <MediaName 
+                        value={name} 
+                        {...register("name", { required: false, minLength: 2, maxLength: 20})} 
+                    />
+                </form>
 
-            <div>
-                <Settings URL={URL} />
+                <div>
+                    <Settings URL={URL} />
+                </div>
             </div>
         </div>
     )
