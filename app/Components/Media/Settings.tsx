@@ -1,9 +1,13 @@
 import Link from "next/link";
 import { TSettings } from "./types"
 
-const Settings = (props: TSettings) => {
+type SearchParamProps = {
+    searchParams: Record<string, string> | null | undefined;
+};
+
+const Settings = (props: TSettings, { searchParams }: SearchParamProps) => {
     const { URL } = props;
-    const customRef: string = `/?visibility=true?&URL=${URL}`;
+    const customRef: string = `/?visibility=true&URL=${URL}`;
     
     const api_deleteMedia = async (url: string) => {
 

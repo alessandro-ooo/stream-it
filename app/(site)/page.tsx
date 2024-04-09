@@ -21,7 +21,8 @@ type SearchParamProps = {
 const Index = async ({ searchParams }: SearchParamProps) => {
     const session = await getServerSession(authOptions);
     const visibilityModal = searchParams?.visibility;
-    const URL = searchParams?.URL, page = searchParams?.page
+    const URL = searchParams?.URL, page = searchParams?.page;
+    console.log("real page from index is", page)
 
     if (session != null) {
         const media = await getAllUserMedia(session.user?.email as string, (page == undefined ? 1 : page as unknown as number));
@@ -34,6 +35,7 @@ const Index = async ({ searchParams }: SearchParamProps) => {
                             <VisibilityForm
                                 URL={URL as string}
                                 OwnerCheck={false}
+                                page={(page == undefined ? "1" : page as unknown as string)}
                             />
                         </Modal>
                     </div>

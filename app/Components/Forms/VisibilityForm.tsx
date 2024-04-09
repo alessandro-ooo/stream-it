@@ -5,9 +5,13 @@ import {Checkbox, Input} from "../Inputs/Inputs";
 import Text from "../Typography/Paragraphs";
 import { TVisibilityFields, TVisibilityForm } from "./types";
 import { useForm } from 'react-hook-form';
+import { useRouter } from 'next/navigation'
 
 const VisibilityForm = (props: TVisibilityForm) => {
-    const { URL, OwnerCheck } = props;
+    const { URL, OwnerCheck, page } = props;
+    const router = useRouter();
+    console.log("from VisibilityGorm", page, URL)
+
     const {
         register,
         handleSubmit,
@@ -70,6 +74,7 @@ const VisibilityForm = (props: TVisibilityForm) => {
                     text="Abort"
                     color="bg-red-500"
                     hover="hover:bg-red-700"
+                    fn={() => router.push(`http:/?page=${page}`) as any}
                 />
             </div>
         </form>
