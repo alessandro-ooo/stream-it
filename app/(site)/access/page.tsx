@@ -1,27 +1,23 @@
 import MediaPasswordForm from "@/app/Components/Forms/MediaPassword";
-import { isUserAllowed } from "@/app/libs/prisma-passwords";
-import { cookies } from "next/headers";
+import Modal from "@/app/Components/Modal/Modal";
 
 type SearchParamProps = {
     searchParams: Record<string, string> | null | undefined;
 };
-  
+
 const Access = async ({ searchParams }: SearchParamProps) => {
 
     const URL: string | undefined = searchParams?.to;
 
     return (
-        <MediaPasswordForm URL={URL as string} />
+        <div className="flex items-center justify-center space-y-24 z-50 h-screen w-full absolute transition bg-gray-900 ease-in-out delay-500">
+            <Modal>
+                <MediaPasswordForm
+                    URL={URL as string}
+                />
+            </Modal>
+        </div>
     )
-    // const isAllowed: boolean = await isUserAllowed(URL as string, cookies().get('email')?.value as string);
-
-    // if(isAllowed == false) {
-    //     return <MediaPasswordForm URL={URL as string} password={"ciao"} />
-    // }
-
-    // if(isAllowed == true) {
-
-    // }
 }
 
 export default Access
