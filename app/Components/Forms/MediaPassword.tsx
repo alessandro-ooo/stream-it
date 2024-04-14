@@ -46,7 +46,7 @@ const MediaPasswordForm = (props: TMediaPassword) => {
         >
             <Input 
                 type="password" 
-                label="Type a password" 
+                label="Password" 
                 placeholder="Password"
                 {...register("password", { required: true, minLength: 2, maxLength: 20})}
             />
