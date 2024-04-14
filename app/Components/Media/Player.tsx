@@ -43,11 +43,6 @@ const Player = (props: TPlayer) => {
                         {"0 views"}
                     </Text>
                 </div>
-
-                <CTA 
-                    text={"Copy link"}
-                    fn={navigator.clipboard.writeText("this.state.textToCopy")}
-                />
             </div>
         </div>
     )
