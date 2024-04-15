@@ -6,11 +6,8 @@
 ## About the project
 stream-it is a www.streamable.com a-like project that uses Next.js 14.1.0, prisma 5.9.1, OAuth and AWS S3 buckets to store and hand out user uploaded videos. The use-case of this platform is to let end-users upload their videos and clips in a trusted's server owner, and let community managers / founder handle their media with complete freedom. The project main goal is to let little and private communities not to rely on freemium platforms.
 
-<a 
-  href="https://www.figma.com/file/FsqjipErw7XQ2E4FLLkRiQ/Untitled?type=design&node-id=2%3A7&mode=design&t=HF9Q7moBgunklR3n-1">
-  <p align="center"> A FULL INTERFACE CAN BE FOUND HERE ON FIGMA <p>
-</a>
-  
+[A FULL INTERFACE CAN BE FOUND HERE ON FIGMA](https://www.figma.com/file/FsqjipErw7XQ2E4FLLkRiQ/Untitled?type=design&node-id=2%3A7&mode=design&t=HF9Q7moBgunklR3n-1)
+
 ![](https://i.imgur.com/8NBt5Ch.png)
 
 ## Getting started
