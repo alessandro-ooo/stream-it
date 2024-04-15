@@ -22,3 +22,18 @@ AWS_S3_SECRET_ACCESS_KEY="YOUR SECRET ACCESS KEY"
 AWS_S3_BUCKET="BUCKET NAME"
 ```
 DO NOT SHARE THIS FILE WITH ANYONE.
+
+
+## Documentation & Contributes
+If you'd like to help out with this project, you can consult the roadmap and take whatever task you would like to work on and reach me at:
+- Discord: alessandroooo_
+- Email: buonocorealessandro98@gmail.com
+- Telegram: @fuckitwebounce
+
+As you add features to this project, you will be credited as maintainer of this repository, so feel free to reach me out and list all your contacts if you want.
+
+![](https://i.imgur.com/BdgbnLT.png)
+
+(!) Those boxes who have a "thumb up" sticker on mean that they've been added to the project already and those tasks are completed.
+
+(Documentation has yet to be written.)
