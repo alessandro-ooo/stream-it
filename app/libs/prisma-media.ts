@@ -32,8 +32,8 @@ const updateMediaName = async (id: string, name: string) => {
     });
 }
 
-const getMedia = async (id: string) => {
-    const res = await prisma.media.findUnique({where: {url: id}});
+const getMedia = async (url: string) => {
+    const res = await prisma.media.findUnique({where: {url: url}});
     return res;
 }
 
