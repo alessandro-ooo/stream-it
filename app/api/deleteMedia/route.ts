@@ -2,14 +2,15 @@ import { deleteMedia, getMedia } from "@/app/libs/prisma-media";
 import { NextRequest, NextResponse } from "next/server";
 
 export async function DELETE (request: NextRequest) {
-    const data: {url: string} = await request.json();
+    const data: { URL: string} = await request.json();
+    console.log("data url", data.URL);
 
-    const media = getMedia(data.url);
+    const media = await getMedia(data.URL);
     if(media === null) {
-        return NextResponse.json({status: 403, error: `${data.url} was not found.`});
+        return NextResponse.json({status: 403, error: `${data.URL} was not found.`});
     }
 
-    const dMedia = await deleteMedia(data.url);
+    const dMedia = await deleteMedia(media.url);
 
     return NextResponse.json({media: dMedia});
 }
