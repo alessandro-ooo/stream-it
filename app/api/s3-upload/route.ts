@@ -53,14 +53,15 @@ export async function POST (request: NextRequest) {
 }
 
 export async function DELETE (request: NextRequest) {
-    const data: { url: string} = await request.json();
+    const data: { URL: string} = await request.json();
+    console.log(data.URL)
     const params = {
         Bucket: process.env.AWS_S3_BUCKET,
-        Key: `${data.url}`,
+        Key: `${data.URL}`,
         ContentType: "video/mp4"
     }
 
     const command = new DeleteObjectCommand(params);
     await bucket.send(command); 
-    return NextResponse.redirect('/');
+    return NextResponse.json({status: "OK"});
 }
