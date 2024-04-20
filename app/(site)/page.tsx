@@ -13,6 +13,7 @@ import Image from "next/image";
 import Card from "../Components/Card/Card";
 import Footer from "../Components/Footer/Footer";
 import Pagination from "../Components/Pagination/Pagination";
+import DeleteMediaForm from "../Components/Forms/DeleteMediaForm";
 
 type SearchParamProps = {
     searchParams: Record<string, string> | null | undefined;
@@ -21,6 +22,7 @@ type SearchParamProps = {
 const Index = async ({ searchParams }: SearchParamProps) => {
     const session = await getServerSession(authOptions);
     const visibilityModal = searchParams?.visibility;
+    const deleteModal = searchParams?.delete;
     const URL = searchParams?.URL, page = searchParams?.page;
     console.log("real page from index is", page)
 
@@ -28,18 +30,23 @@ const Index = async ({ searchParams }: SearchParamProps) => {
         const media = await getAllUserMedia(session.user?.email as string, (page == undefined ? 1 : page as unknown as number));
         return (
             <div>
-                {
-                    visibilityModal &&
-                    <div className="flex items-center justify-center space-y-24 z-50 h-screen w-full absolute transition bg-gray-900 ease-in-out delay-500">
-                        <Modal>
-                            <VisibilityForm
-                                URL={URL as string}
-                                OwnerCheck={false}
-                                page={(page == undefined ? "1" : page as unknown as string)}
-                            />
-                        </Modal>
-                    </div>
-                }
+                <Modal status={visibilityModal || deleteModal}>
+                    {visibilityModal &&
+                        <VisibilityForm
+                            URL={URL as string}
+                            OwnerCheck={false}
+                            page={(page == undefined ? "1" : page as unknown as string)}
+                        />
+                    }
+
+                    {deleteModal &&
+                        <DeleteMediaForm
+                            URL={URL as string}
+                            OwnerCheck={false}
+                            page={(page == undefined ? "1" : page as unknown as string)}
+                        />
+                    }
+                </Modal>
                 <DnD>
                     <Navbar />
                     <Collection>
