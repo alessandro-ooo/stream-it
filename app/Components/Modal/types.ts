@@ -1,3 +1,4 @@
 export type TModal = {
-    children: React.ReactNode
+    children: React.ReactNode;
+    status: string | undefined;
 }
