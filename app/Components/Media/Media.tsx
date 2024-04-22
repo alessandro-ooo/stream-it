@@ -19,7 +19,7 @@ const Media = (props: TMedia) => {
     });
     return (
         <div 
-            className="bg-red-100 max-w-96 h-52 static"
+            className="max-w-96 h-52 static"
         >
             <Link
                 href={URL}

@@ -9,7 +9,7 @@ const Player = (props: TPlayer) => {
     const { URL, name } = props;
     return (
         <div 
-            className="bg-red-100 flex-col justify-center items-center space-y-2"
+            className="flex-col justify-center items-center space-y-2"
         >
             <video
                 className="rounded-2xl h-[38rem]"
