@@ -1,3 +1,9 @@
+# [Deckx.app validation](https://platform.deckx.app)
+<p align="center">
+  <h1 align="center"><img src="https://deckx.notion.site/image/https%3A%2F%2Fprod-files-secure.s3.us-west-2.amazonaws.com%2Fe59b9143-227f-467c-8709-2103bc8ced0c%2F33262bb7-49bf-4307-87a7-1bac83088b45%2FNextJSBadge.png?table=block&id=186eae69-e2dc-4e74-90a1-e0be5a3530ec&spaceId=e59b9143-227f-467c-8709-2103bc8ced0c&width=240&userId=&cache=v2"></img></h1>
+</p>
+![]()
+
 ![](https://i.imgur.com/sRdWs8p.png)
 <p align="center">
   <h1 align="center"></h1>
